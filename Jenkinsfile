@@ -16,20 +16,9 @@ pipeline {
     }
 
     stage('package') {
-      parallel {
-        stage('package') {
-          steps {
-            echo 'package maven app'
-            sh 'mvn package -DskipTests'
-          }
-        }
-
-        stage('error') {
-          steps {
-            archiveArtifacts 'target/*.war'
-          }
-        }
-
+      steps {
+        echo 'package maven app'
+        sh 'mvn package -DskipTests'
       }
     }
 
