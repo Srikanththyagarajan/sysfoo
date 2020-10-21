@@ -15,6 +15,12 @@ pipeline {
     }
 
     stage('test') {
+      agent {
+        docker {
+          image 'maven:3.6.3-jdk-11-slm'
+        }
+
+      }
       steps {
         echo 'test maven app'
         sh 'mvn clean test'
@@ -22,6 +28,12 @@ pipeline {
     }
 
     stage('package') {
+      agent {
+        docker {
+          image 'maven:3.6.3-jdk-11-slm'
+        }
+
+      }
       steps {
         echo 'package maven app'
         sh 'mvn package -DskipTests'
